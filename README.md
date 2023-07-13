@@ -4,8 +4,9 @@
 <li>Software engineer at <a href="https://www.linkedin.com/company/softserve">SoftServe</a>, full stack </li>
 <li>Teaching assistant at <a href="https://en.wikipedia.org/wiki/Chernivtsi_University">Yuriy Fedkovych Chernivtsi National University</a> </li>
 <li>Degree in mathematics and computer sciences </li>
-<li>Love board games, astronomy, sci-fi, philosophy, electrical engineering, hiking and ornitology</li>
-<li>Live in UA</li>
+<li>Love board games, astronomy, sci-fi, philosophy, electrical engineering, hiking and ornitology </li>
+<li>Live in UA </li>
+<li><a href="https://maxvonlancaster.github.io/maxvonlancaster/blog/">My blog</a> </li>
 </ul>
 
 <h2>🚀 Tools I Use</h2>
