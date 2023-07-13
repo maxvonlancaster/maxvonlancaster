@@ -1,5 +1,11 @@
 ### Hello there 👋
-
+<h2>⚡️ About me</h2>
+<ul>
+<li>Software engineer at [SoftServe](https://www.linkedin.com/company/softserve), full stack </li>
+<li>Teaching assistant at [Yuriy Fedkovych Chernivtsi National University](https://en.wikipedia.org/wiki/Chernivtsi_University) </li>
+<li>Degree in mathematics and computer sciences </li>
+<li>Love board games, astronomy, sci-fi, hiking, electrical engineering </li>
+</ul>
 
 <h2>🚀 Tools I Use</h2>
 <code><img height="20" alt="csharp" src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white"></code>
