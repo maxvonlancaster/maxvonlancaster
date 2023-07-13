@@ -22,27 +22,38 @@ $(document).ready(function() {
         collectedInfo.push(info);
       });
     }
+
+    let files = [
+        "2023/7_14.html"
+    ]
   
-    // Function to process each HTML file in the folder
-    function processHTMLFiles() {
-      $.ajax({
-        url: folderPath,
-        success: function(data) {
-          // Find all the HTML files in the folder
-          $(data).find('a[href$=".html"]').each(function() {
-            var file = $(this).attr('href');
+    // // Function to process each HTML file in the folder
+    // function processHTMLFiles() {
+    //   $.ajax({
+    //     url: folderPath,
+    //     success: function(data) {
+    //       // Find all the HTML files in the folder
+    //       $(data).find('a[href$=".html"]').each(function() {
+    //         var file = $(this).attr('href');
+    //         // Call the function to retrieve information from each HTML file
+    //         getInfoFromHTMLFile(file);
+    //       });
+    //     },
+    //     complete: function() {
+    //       // Display the collected information
+    //     //   collectedInfo.forEach(function(info) {
+    //     //     $('#main').append('<p>' + info + '</p>');
+    //     //   });
+    //     }
+    //   });
+    // }
+
+    function processNew(){
+        files.forEach(function(file) {
             // Call the function to retrieve information from each HTML file
             getInfoFromHTMLFile(file);
-          });
-        },
-        complete: function() {
-          // Display the collected information
-        //   collectedInfo.forEach(function(info) {
-        //     $('#main').append('<p>' + info + '</p>');
-        //   });
-        }
-      });
+          })
     }
 
-    processHTMLFiles();
+    processNew();
   });
