@@ -4,7 +4,8 @@
 <li>Software engineer at <a href="https://www.linkedin.com/company/softserve">SoftServe</a>, full stack </li>
 <li>Teaching assistant at <a href="https://en.wikipedia.org/wiki/Chernivtsi_University">Yuriy Fedkovych Chernivtsi National University</a> </li>
 <li>Degree in mathematics and computer sciences </li>
-<li>Love board games, astronomy, sci-fi, hiking, electrical engineering </li>
+<li>Love board games, astronomy, sci-fi, philosophy, electrical engineering, hiking and ornitology</li>
+<li>Live in UA</li>
 </ul>
 
 <h2>🚀 Tools I Use</h2>
@@ -27,6 +28,7 @@
 <code><img height="20" alt="jupyter" src="https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white"></code>
 <code><img height="20" alt="node" src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"></code>
 <code><img height="20" alt="react" src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"></code>
+<code><img height="20" alt="knockoutjs" src="https://avatars.githubusercontent.com/u/3863375?s=200&v=4"></code>
 
 <code><img height="20" alt="mongo" src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"></code>
 <code><img height="20" alt="elastic" src="https://img.shields.io/badge/Elastic_Search-005571?style=for-the-badge&logo=elasticsearch&logoColor=white"></code>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino and .net</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    
+</head>
+
+<body>
+    <div class="container">
+
+        <div style="display:flex; align-items:center; justify-content: space-between;">
+            <h2 style="margin-right: 10px;">Arduino and .net for beginners</h2>
+            <p id="date" style="margin-left: 10px; font-size: 14px;">14th of July, 2023</p>
+          </div>
+
+        <article>
+            <p>Suppose, you want to call your Arduino board from .net env, pass some information from CLR to outside controller connected to your machine via usb port.</p>
+            <p>Well, here is some solution for you:</p>
+
+            <h3>Arduino code sample:</h3>
+
+            <pre><code>
+<span style="color: green;">// Data, comming from port</span>
+char commandValue; 
+<span style="color: green;">// Diode 13</span>
+int ledPin = 13; 
+        
+void setup() {
+    <span style="color: green;">// Data output mode</span>
+    pinMode(ledPin, OUTPUT);    
+    Serial.begin(9600);
+}
+        
+void loop() {
+    if (Serial.available()) {
+        commandValue = Serial.read();
+    }
+        
+    if (commandValue == '1') {
+        <span style="color: green;">// turn the diode on if we receive 1 from PC</span>
+        digitalWrite(ledPin, HIGH); 
+    }
+    else {
+        <span style="color: green;">// else - off</span>
+        digitalWrite(ledPin, LOW); 
+    }
+    <span style="color: green;">// delay before next read</span>
+    delay(10); 
+}
+        </code></pre>
+
+            <p>Upload this code to Arduino board.</p>
+
+
+            <h3>C# code sample:</h3>
+            <pre><code>
+using System.IO.Ports;
+
+namespace AL.Services
+{
+    public class ArduinoService
+    {
+        <span style="color: green;">// We will connect to board using Serial port resource from the </span>
+        <span style="color: green;">// library System.IO.Ports </span>
+        private SerialPort? _serialPort;
+
+        public ArduinoService()
+        {
+            ConnectViaPort();
+        }
+
+        private void ConnectViaPort() 
+        {
+            <span style="color: green;">// Initialise the connection</span>
+            _serialPort = new SerialPort();
+            <span style="color: green;">// Check the name of your port - might be COM4</span>
+            _serialPort.PortName = "COM3";
+
+            <span style="color: green;">// Baud rate is the rate at which the number </span>
+            <span style="color: green;">// of signal elements or changes to the signal</span>
+            <span style="color: green;">// occurs per second when it passes through a transmission medium</span>
+            _serialPort.BaudRate = 9600;
+            _serialPort.Open();
+        }
+
+        <span style="color: green;">// ledPin is by default 13</span>
+        public void Write(string message, string? ledPin = null) 
+        {
+            if (_serialPort != null) 
+            {
+                <span style="color: green;">// Here we send "1" or "0" or any other message</span>
+                <span style="color: green;">// to the arduino board</span>
+                _serialPort.Write(message);
+            }
+        }
+
+        public string ReadExisting() 
+        {
+            var message = "";
+            if (_serialPort != null)
+            {
+                <span style="color: green;">// Functionality for reading messages from the board</span>
+                message = _serialPort.ReadExisting();
+                Console.WriteLine(message);
+            }
+            return message;
+        }
+    }
+}
+
+        </code></pre>
+        
+        <p>Compile and run this code when you have your Arduino controller connected with PC via the usb port, call the <code>Write()</code> method from console and checkout pin 13 on the board!</p>
+
+            <h3>Conclusion</h3>
+            <p>In one of the next blog posts I'll try to do more complicated stuff with the arduino controller, but for
+                now, I suppose, it is pretty usefull.</p>
+        </article>
+
+        <footer>
+            <p><a href="https://github.com/maxvonlancaster">My git</a></p>
+        </footer>
+    </div>
+</body>
+
+</html>
