@@ -39,6 +39,7 @@ pre::before {
 
 code {
     font-family: Consolas, monospace;
+    color: blue;
 }
 
 
