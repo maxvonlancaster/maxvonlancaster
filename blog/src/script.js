@@ -24,7 +24,8 @@ $(document).ready(function() {
     }
 
     let files = [
-        "2023/7_14.html"
+      "2023/7_14.html",
+        "2023/7_13.html"
     ]
   
     // // Function to process each HTML file in the folder
