@@ -12,12 +12,12 @@ $(document).ready(function() {
     }
   
     // Function to retrieve the information from each HTML file
-    function getInfoFromHTMLFile(file) {
+    function getInfoFromHTMLFile(file, i) {
       $.get(file, function(data) {
         // Extract the desired information from the HTML file
         var info = $(data).find('h2').text();
         var date = $(data).find('#date').text();
-        $('#main').append(getArticle(info, file, date));
+        $('#main-' + i).append(getArticle(info, file, date));
         // Add the information to the collectedInfo array
         collectedInfo.push(info);
       });
@@ -51,10 +51,14 @@ $(document).ready(function() {
     // }
 
     function processNew(){
-        files.forEach(function(file) {
-            // Call the function to retrieve information from each HTML file
-            getInfoFromHTMLFile(file);
-          })
+      for(let i = 0; i < files.length; i++){
+        $('#main').append("<div id='main-"+ i +"'></div>");
+        getInfoFromHTMLFile(files[i], i);
+      }
+        // files.forEach(function(file) {
+        //     // Call the function to retrieve information from each HTML file
+        //     getInfoFromHTMLFile(file);
+        //   })
     }
 
     processNew();
