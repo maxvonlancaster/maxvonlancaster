@@ -9,7 +9,6 @@ $(document).ready(function() {
         var info = $(data).find('h2').text();
         var date = $(data).find('#date').text();
         $('#main-' + i).append(getArticle(info, file, date));
-        collectedInfo.push(info);
       });
     }
 
