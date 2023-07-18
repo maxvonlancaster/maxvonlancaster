@@ -13,6 +13,7 @@ $(document).ready(function() {
     }
 
     let files = [
+      "2023/7_18.html",
       "2023/7_15.html",
       "2023/7_14.html",
       "2023/7_13.html"
