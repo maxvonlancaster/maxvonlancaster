@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>More ideas for student js, html and css tasks</title>
     <link rel="stylesheet" href="../src/styles.css">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -274,11 +274,32 @@
 
         </article>
 
-        <footer>
+        <div>
             <p><a href="https://github.com/maxvonlancaster">My git</a></p>
             <p><a href="../../blog/index.html">Back to main</a></p>
-        </footer>
+        </div>
+
+        <h3>Comments:</h3>
+
+        <div id="comments"></div>
+
+        <br>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+            </div>
+    
+            <input class="button-subm" type="submit" value="Submit">
+        </form>
     </div>
+
+    <script src="./../src/blogpost.js"></script>
 </body>
 
 <!-- /**

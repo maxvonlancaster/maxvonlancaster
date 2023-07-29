@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino and .net</title>
     <link rel="stylesheet" href="../src/styles.css">
-    <script src="https://unpkg.com/gitrows@0.8.0/dist/gitrows.min.js"></script> 
+    <!-- <script src="https://unpkg.com/gitrows@0.8.0/dist/gitrows.min.js"></script>  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -128,17 +129,24 @@ namespace AL.Services
             <p><a href="../../blog/index.html">Back to main</a></p>
         </div>
 
-        <!-- <h3>Comments:</h3>
+        <h3>Comments:</h3>
 
+        <div id="comments"></div>
+
+        <br>
         <form id="myForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required><br>
-    
-            <label for="message">Message:</label><br>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
             <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+            </div>
     
-            <input type="submit" value="Submit">
-        </form> -->
+            <input class="button-subm" type="submit" value="Submit">
+        </form>
 
     </div>
 
