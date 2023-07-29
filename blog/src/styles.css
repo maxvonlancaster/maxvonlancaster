@@ -127,3 +127,17 @@ section {
   .button-subm:hover {
     background-color: #45a049;
   }
+
+.links{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+.link{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
