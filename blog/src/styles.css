@@ -141,3 +141,22 @@ section {
     border-radius: 4px;
     padding: 5px;
 }
+
+
+.footer-icons {
+  /* padding-top:40px; */
+  width:300px;
+  /* margin:auto; */
+  /* text-align:center; */
+  vertical-align:middle;
+}
+
+#footer-text {
+  display:inline-block;
+  vertical-align:middle;
+}
+
+#footer-git {
+  display:inline-block;
+  vertical-align:middle;
+}
