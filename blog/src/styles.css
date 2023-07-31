@@ -10,6 +10,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+h2{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
 .container {
     max-width: 800px;
     background-color: #fff;
