@@ -236,7 +236,7 @@ namespace HotChocolateDemo.Mutations
     }
 }
             </code></pre>
-            <p>Here using attribute <code>[Service]</code> we inject the neccessary service into our code.</p>
+            <p>Here using attribute <code>[Service]</code> we inject the neccessary service into our service.</p>
 
             <p>Next we start the server, and go to https://localhost:{your-start-port}/graphql/ to see IDE Banana Cake Pop, that will allow 
                 you to explore the schema and write GraphQL queries. There we can see the schema and start writting queries and mutations from that</p>
@@ -256,17 +256,24 @@ namespace HotChocolateDemo.Mutations
             <p>We can specify the properties we want to retrieve in brackets of query</p>
 
 
+            <h3>Subscriptions</h3>
+            <p>GraphQL subscriptions provide real-time functionality to applications by allowing clients to subscribe to specific
+                events.
+                When these events trigger, the server immediately sends updates to the subscribed clients.</p>
+            <p>Before defining the subscription type, we need to add the WebSockets middleware to our request pipeline.</p>
+            <p>Program.cs</p>
+            <pre><code>app.UseWebSockets();</code></pre>
 
             <h3>Pagination</h3>
-
+                TODO
+                
             <h3>DataLoaders and Nodes</h3>
 
             <h3>Sorting and Filtering</h3>
 
             <h3>File Upload</h3>
 
-            <h3>Subscriptions</h3>
-
+            
         </article>
 
         <div class="links">
