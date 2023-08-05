@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="../media/icon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL with HotChocolate in .Net</title>
+    <link rel="stylesheet" href="../src/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div id="container" class="container">        
+        <div class="links">
+            <p class="link"><a href="../../blog/index.html">Back to main</a></p>
+            <p class="link"><a href="https://github.com/maxvonlancaster">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="#000000">
+                  <path d="M16 .297c-8.837 0-16 7.163-16 16 0 7.073 4.58 13.073 10.938 15.191.8.148 1.092-.342 1.092-.764 0-.378-.015-1.641-.022-2.984-4.455.967-5.39-2.146-5.39-2.146-.728-1.848-1.778-2.34-1.778-2.34-1.455-.996.11-.976.11-.976 1.606.112 2.45 1.65 2.45 1.65 1.426 2.444 3.74 1.738 4.65 1.33.144-1.032.56-1.74 1.016-2.14-3.554-.402-7.29-1.778-7.29-7.91 0-1.748.62-3.175 1.64-4.294-.164-.404-.712-2.035.156-4.24 0 0 1.343-.433 4.4 1.646 1.276-.355 2.648-.532 4.01-.538 1.36.006 2.732.183 4.01.538 3.055-2.08 4.395-1.646 4.395-1.646.87 2.205.322 3.836.158 4.24 1.022 1.119 1.638 2.546 1.638 4.294 0 6.145-3.74 7.505-7.305 7.898.576.496 1.085 1.472 1.085 2.968 0 2.144-.02 3.86-.02 4.382 0 .422.288.917 1.1.76C27.425 29.365 32 23.365 32 16.297c0-8.837-7.163-15.997-16-15.997" />
+                </svg>
+              </a></p>
+        </div>
+
+
+        <div style="display:flex; align-items:center; justify-content: space-between;">
+            <h2 style="margin-right: 10px;">GraphQL with HotChocolate in .Net</h2>
+            <p id="date" style="margin-left: 10px; font-size: 14px;">5th of August, 2023</p>
+          </div>
+
+          
+
+        <article>
+            <h3>Welcome to GraphQL</h3>
+            <p>GraphQL, often dubbed as a query language for APIs, allows clients to request exactly the data they need, no more and no less. 
+                Unlike REST APIs, where endpoints dictate the structure of the response, GraphQL empowers clients to define their data 
+                requirements through queries. This level of control eliminates over-fetching and under-fetching of data, streamlining network 
+                requests and enhancing application performance.</p>
+
+                <p>REST requests:</p>
+            <img src="../media/graphql/1.png" alt="" srcset="" style="width:80%">
+
+            <p>GraphQL requests:</p>
+            <img src="../media/graphql/2.png" alt="" srcset="" style="width:80%">
+
+
+            <h3>GraphQL vs REST</h3>
+            <p>Advantages of GraphQL</p>
+            <ul>
+                <li><b>Efficiency in Data Retrieval:</b> GraphQL enables clients to request precisely the data they need, minimizing over-fetching or under-fetching of information. This tailored approach enhances performance and reduces unnecessary network traffic, ultimately resulting in faster response times.</li>
+                <li><b>Single Request, Multiple Resources:</b> Unlike REST, which often necessitates multiple endpoints for different resources, GraphQL allows clients to retrieve related data in a single request. This reduces the infamous "N+1 query" problem and simplifies data aggregation.</li>
+                <li><b>Flexible Schema Evolution:</b> GraphQL's schema-first design empowers developers to evolve APIs without breaking changes. New fields and types can be added without impacting existing clients, fostering agility and accommodating changing business requirements.</li>
+                <li><b>Strongly Typed:</b> GraphQL enforces a strongly typed schema, providing clear definitions of available data and operations. This eliminates ambiguity and reduces runtime errors, leading to more robust and maintainable codebases.</li>
+            </ul>
+
+            <p>Disadvantages</p>
+            <ul>
+                <li><b>Complexity in Caching:</b> Caching in GraphQL can be more challenging due to the dynamic nature of queries. Implementing efficient caching strategies requires careful consideration and additional effort.</li>
+                <li><b>Potential for Over-Fetching:</b> While GraphQL's flexibility is an advantage, inexperienced or poorly optimized queries might still lead to over-fetching of data, impacting performance.</li>
+            </ul>
+
+            <h3>HotChocolate - how to start?</h3>
+
+            <ul>
+                <li>Create a new Asp Net core app with Web Api</li>
+                <pre><code>dotnet new webapi -n HotChocolateDemo</code></pre>
+
+                <li>Install HotChocolate via Nuget packege manager</li>
+                <pre><code>Install-Package HotChocolate</code></pre>
+                <pre><code>Install-Package HotChocolate.AspNetCore</code></pre>
+
+                <li>Lets define some entities and connection string to retrieve the data from db using ORM </li>
+                <p>Program.cs</p>
+                <pre><code> 
+using HotChocolateDemo.Entities;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+<span style="color: green;">// Add services to the container.</span>
+builder.Services.AddControllers();
+<span style="color: green;">// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle</span>
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext&lt;DemoContext&gt;(
+    opt‌​ions =>
+    {
+    options.UseSqlServer(builder.Configuration["DemoConnectionString"]);
+    }
+    );
+
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
+    {
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
+                </code></pre>
+
+                <p>appsettings.json</p>
+                <pre><code> 
+{
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft.AspNetCore": "Warning"
+      }
+    },
+    "AllowedHosts": "*",
+    "DemoConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=DemoDb;Integrated Security=True;TrustServerCertificate=True;"
+  }  
+                </code></pre>
+
+                <p>Entities/Author.cs</p>
+                <pre><code> 
+namespace HotChocolateDemo.Entities
+{
+    public class Author
+    {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public DateTime Birth { get; set; }
+        public virtual ICollection<Book>? Books { get; set; }
+    }
+}
+                </code></pre>
+
+                <p>Entities/Book.cs</p>
+                <pre><code> 
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace HotChocolateDemo.Entities
+{
+    public class Book
+    {
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public virtual Author? Author { get; set; }
+        [ForeignKey(nameof(Author))]
+        public int AuthorId { get; set; }
+    }
+}
+                </code></pre>
+
+                <p>Entities/DemoContext.cs</p>
+                <pre><code> 
+using Microsoft.EntityFrameworkCore;
+
+namespace HotChocolateDemo.Entities
+{
+    public class DemoContext : DbContext
+    {
+        public DemoContext(DbContextOptions options) : base(options){}
+        DbSet&lt;Author&gt; Authors { get; set; }
+        DbSet&lt;Book&gt; Books { get; set; }
+    }
+}
+                </code></pre>
+
+                <li>Generate and run initial migration to update database up to date with the models (this one is EF core specific, you may use another ORM)</li>
+                <pre><code>dotnet ef migrations add Init --context DemoContext</code></pre>
+                <pre><code>dotnet ef database update</code></pre>
+            </ul>
+
+            <h3>Queries and Mutations</h3>
+            <p>In GraphQL, queries and mutations are two fundamental operations that clients can use to interact with the server and retrieve or manipulate data. They serve distinct purposes and are designed to facilitate efficient and flexible communication between clients and the GraphQL server.</p>
+            <p><b>Queries:</b> Queries in GraphQL are used to request data from the server. They resemble a data structure that defines the shape and structure of the data the client is interested in fetching. With queries, clients can specify exactly what fields they need, allowing them to retrieve only the necessary data and avoid over-fetching.</p>
+            <p><b>Mutations:</b> Mutations in GraphQL are used to modify data on the server. They provide a way for clients to create, update, or delete data. Mutations are similar in structure to queries but are executed with the intent of making changes to the data on the server.</p>
+
+            <p>The query type in GraphQL represents a read-only view of all of our entities and ways to retrieve them. A query type is required for every GraphQL server.</p>
+            <p>A query type can be defined like the following:</p>
+            <p>Queries/DemoQuery.cs</p>
+            <pre><code>
+using HotChocolateDemo.Entities;
+
+namespace HotChocolateDemo.Queries
+{
+    public class DemoQueries
+    {
+        public List<Book> GetBooks([Service] DemoContext demoContext)
+        {
+            return demoContext.Books.ToList();
+        }
+
+        public Book? GetBook([Service] DemoContext demoContext, int id)
+        {
+            return demoContext.Books.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Author> GetAuthors([Service] DemoContext demoContext)
+        {
+            return demoContext.Authors.ToList();
+        }
+
+        public Author? GetAuthor([Service] DemoContext demoContext, int id)
+        {
+            return demoContext.Authors.FirstOrDefault(x => x.Id == id);
+        }
+    }
+}
+            </code></pre>
+
+            <p>A mutation type can be defined like the following.</p>
+            <p>Mutations/DemoMutation.cs</p>
+            <pre><code>
+using HotChocolateDemo.Entities;
+
+namespace HotChocolateDemo.Mutations
+{
+    public class DemoMutations
+    {
+        public async Task<int> AddBook(
+            Book book,
+            [Service] DemoContext demoContext)
+        {
+            demoContext.Books.Add(book);
+            await demoContext.SaveChangesAsync();
+            return book.Id;
+        }
+
+        public async Task<int> AddAuthor(
+            Author author,
+            [Service] DemoContext demoContext)
+        {
+            demoContext.Authors.Add(author);
+            await demoContext.SaveChangesAsync();
+            return author.Id;
+        }
+    }
+}
+            </code></pre>
+            <p>Here using attribute <code>[Service]</code> we inject the neccessary service into our code.</p>
+
+            <p>Next we start the server, and go to https://localhost:{your-start-port}/graphql/ to see IDE Banana Cake Pop, that will allow 
+                you to explore the schema and write GraphQL queries. There we can see the schema and start writting queries and mutations from that</p>
+            <img src="../media/graphql/3.png" alt="" srcset="" style="width:90%">
+
+            <p>Here we can look at schema</p>
+            <img src="../media/graphql/4.png" alt="" srcset="" style="width:90%">
+
+            <p>Lets try mutation to add some entities</p>
+            <img src="../media/graphql/5.png" alt="" srcset="" style="width:90%">
+
+            <p>And imidiately retrieve all of the properties of these entities using query (here we retrieve only property Name of every row)</p>
+            <img src="../media/graphql/6.png" alt="" srcset="" style="width:90%">
+
+            <p>And one specific entity with given id</p>
+            <img src="../media/graphql/7.png" alt="" srcset="" style="width:90%">
+            <p>We can specify the properties we want to retrieve in brackets of query</p>
+
+
+
+            <h3>Pagination</h3>
+
+            <h3>DataLoaders and Nodes</h3>
+
+            <h3>Sorting and Filtering</h3>
+
+            <h3>File Upload</h3>
+
+            <h3>Subscriptions</h3>
+
+        </article>
+
+        <div class="links">
+            <p class="link"><a href="../../blog/index.html">Back to main</a></p>
+            <p class="link"><a href="https://github.com/maxvonlancaster">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="#000000">
+                  <path d="M16 .297c-8.837 0-16 7.163-16 16 0 7.073 4.58 13.073 10.938 15.191.8.148 1.092-.342 1.092-.764 0-.378-.015-1.641-.022-2.984-4.455.967-5.39-2.146-5.39-2.146-.728-1.848-1.778-2.34-1.778-2.34-1.455-.996.11-.976.11-.976 1.606.112 2.45 1.65 2.45 1.65 1.426 2.444 3.74 1.738 4.65 1.33.144-1.032.56-1.74 1.016-2.14-3.554-.402-7.29-1.778-7.29-7.91 0-1.748.62-3.175 1.64-4.294-.164-.404-.712-2.035.156-4.24 0 0 1.343-.433 4.4 1.646 1.276-.355 2.648-.532 4.01-.538 1.36.006 2.732.183 4.01.538 3.055-2.08 4.395-1.646 4.395-1.646.87 2.205.322 3.836.158 4.24 1.022 1.119 1.638 2.546 1.638 4.294 0 6.145-3.74 7.505-7.305 7.898.576.496 1.085 1.472 1.085 2.968 0 2.144-.02 3.86-.02 4.382 0 .422.288.917 1.1.76C27.425 29.365 32 23.365 32 16.297c0-8.837-7.163-15.997-16-15.997" />
+                </svg>
+              </a></p>
+        </div>
+
+        <h3>Comments:</h3>
+
+        <div id="comments"></div>
+
+        <br>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+            </div>
+    
+            <input class="button-subm" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('h3');
+        let container = document.querySelector('#container');
+
+        const contentSummary = document.createElement('div');
+        contentSummary.classList.add('content-summary');
+
+        let i = 0; 
+        sections.forEach((h3, index) => {
+            i++;
+            const text = document.createElement('span');
+            text.textContent = i + ' - ';
+            const link = document.createElement('a');
+            link.href = `#h3-${index}`;
+            link.textContent = h3.textContent + '\n';
+            contentSummary.appendChild(text);
+            contentSummary.appendChild(link);
+            contentSummary.appendChild(document.createElement('br'));
+
+            const anchor = document.createElement('a');
+            anchor.id = `h3-${index}`;
+            h3.parentNode.insertBefore(anchor, h3);
+        });
+
+        container.insertBefore(contentSummary, container.querySelector('article'));
+    </script>
+
+    <script src="./../src/blogpost.js"></script>
+</body>
+</html>
