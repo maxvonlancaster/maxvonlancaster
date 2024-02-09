@@ -2,7 +2,9 @@ let comments;
 let page = window.location.pathname.split("/").pop();
 
 $(document).ready(function () {
-    fetch("https://api.npoint.io/f1370da3f3f283092f16")
+    fetch("https://student-site.vercel.app/api/posts", {
+        method: "GET",
+})
         .then(response => response.json())
         .then(data => {
             comments = data;
@@ -32,13 +34,9 @@ async function postData(event) {
     const form = event.target;
     const formData = new FormData(form);
 
-    // You can access form data using the FormData object
     const name = formData.get("name");
     const message = formData.get("message");
 
-    // var pathPage = window.location.pathname;
-    // var page = pathPage.split("/").pop();
-    // console.log(page);
 
     let data = {
         name: name,
@@ -47,31 +45,11 @@ async function postData(event) {
         date: new Date().toLocaleString('en-GB')
     }
 
-    // const gitrows = new Gitrows();
-
-    // gitrows.options(options);
-
-    // let path = '@github/maxvonlancaster/maxvonlancaster:main/blog/src/data.json';
-
-    // gitrows.put(path, data)
-    //     .then((resp) => {
-    //         //handle (Array/Object)data
-    //         console.log(resp);
-    //     })
-    //     .catch((error) => {
-    //         console.log(error);
-    //         //handle error, which has the format (Object){code:http_status_code,description='http_status_description'}
-    //     });
-
     comments.push(data);
 
-    const response = await fetch(`https://api.npoint.io/f1370da3f3f283092f16`, {
+    const response = await fetch(`https://student-site.vercel.app/api/posts`, {
         method: "POST",
-        headers: {
-            // "Authorization": `token ${token}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(comments),
+        body: JSON.stringify(data),
     });
 
     window.location.reload();
