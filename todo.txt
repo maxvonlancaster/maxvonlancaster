@@ -1,0 +1,13 @@
+1. link to star trek map;
+2. something about graphql;
+3. jupyter notebook about chatgpt; +
+4. math;
+5. problems for students minimud;
+6. quizzes for student uni;
+7. ideas for apps;
+8. links to imdb, youtube playlists etc;
+9. just ideas in general - separate page;
+10. Prepare repository in web chnu
+11. Graphs connectivity topology K6 K3,3 
+12. Add thesis and google scholar on aboutme +
+13. Github Actions 
