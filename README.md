@@ -7,7 +7,6 @@
 <li>Love board games, astronomy, sci-fi, philosophy, electrical engineering, hiking and ornitology </li>
 <li>Live in UA </li>
 <li><a href="https://github.com/maxvonlancaster/phd/blob/master/main1.pdf">My thesis</a> and <a href="https://scholar.google.com/citations?hl=uk&user=jQg-N2IAAAAJ&view_op=list_works&gmla=AJsN-F6b9Lzfze6pQmJ2Jvzj-bAZ3rc3Oa3dbeQn9Nk8pouQ0_PLOjt_HpAL0PqR3frOTYfAJVC1VXxjuGm1iwFQ_NbdBaFUeMLPSHBCTLVC_EuTRagxb3v3_M1F1_PIcS3icxDLPRC2">my scientific research</a> </li>
-<li><a href="https://maxvonlancaster.github.io/maxvonlancaster/blog/">My blog</a> </li>
 </ul>
 
 <h2>🚀 Tools I Use</h2>
