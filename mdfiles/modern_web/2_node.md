@@ -7,6 +7,26 @@ Node js - host env for javascript, js engine
 Allows you to run js outside of the browser;
 Adds new api (filesystem), drops other (dom api)
 
+Node.js (Node) is an Open Source, cross-platform runtime environment for executing JavaScript code. Node is used extensively for server-side programming, making it possible for developers to use JavaScript for client-side and server-side code without needing to learn an additional language. Node is sometimes referred to as a programming language or software development framework, but neither is true; it is strictly a JavaScript runtime.
+
+Node incorporates the V8 JavaScript engine, the same one used in Google Chrome and other browsers. It is written in C++ and can run on macOS, Linux, Windows and other systems. The engine parses and executes JavaScript code. It can operate independently of a browser environment, either embedded in a C++ application or implemented as a standalone program. The V8 engine compiles JavaScript internally, using just-in-time (JIT) processes to speed up execution.
+
+A Node application runs in a single process. Node does not create a new thread for every request, as is often the case with traditional server-side programs. In this way, a Node server can handle thousands of concurrent connections without having to contend with thread concurrency issues or the overhead multithreading brings.
+
+Node.js is event-driven and runs asynchronously. Code written for the Node environment does not follow the traditional model of receive, process, send, wait and receive found in other systems. Instead, Node implements an event loop that processes incoming requests as they stack up in the event queue, handling small requests one after the other without waiting for responses.
+
+This is a shift away from mainstream models that run larger, more complex operations and process several threads concurrently, with each thread waiting for its appropriate response before moving on.
+
+The Node.js approach offers a major advantage over these models, according to its creator Ryan Dahl. Node does not block input/output (I/O) operations like more traditional approaches. This is in large part because Node functions do not perform I/O directly, which helps eliminate the potential for blocking. Blocking occurs only when using synchronous methods in the standard Node library, but that is the exception rather than the rule, making Node well suited for real-time applications with heavy concurrent workloads.
+
+Node also ships with the npm command-line interface (CLI). The CLI is part of the npm package management system, which includes an extensive registry of JavaScript software and its meta information. The CLI lets users interact with npm packages in the registry directly from their consoles. The registry is reportedly the largest single language code repository in the world.
+
+Like JavaScript, Node is considered relatively easy to learn. It is widely implemented and has a large, active user community behind it. In addition, because Node is asynchronous, event-driven and non-blocking, it can handle the type of real-time concurrency common in many of today's web applications and online services. Node is well suited to real-time applications such as chats, streaming services, internet of things (IoT) offerings or single-page applications.
+
+Node is not suited to every type of workload, however. For example, because of its single-threaded nature, Node might not be able to effectively run a processor-intensive web application that requires heavy server-side computations. The computational load could end up blocking incoming requests and degrading overall performance.
+
+On the other hand, if Node appears to meet your needs in all other respects and the computational load is not too excessive, you might be able to implement that load as background processes in another language. Node can also be used as part of a microservices architecture that breaks the application into smaller parts.
+
 To start - new folder, add there an app.js file, and write there:
 ```
 console.log("hello world");
@@ -173,7 +193,7 @@ app.listen(5000);
 
 express (on line 1) is a function.
 Idea of express - is usage of functions in middleware, that work with the request.
-Middleware - is the app.use() method.
+Middleware - is the `app.use()` method.
 next() function - forward to the next middleware.
 
 Before proceding, lets install nodemon, which will execute files, and restrt server automatically when save file.:
