@@ -1,6 +1,7 @@
 ### Hello there 👋
 <h2>⚡️ About me</h2>
 <ul>
+<li>Vasyl Melnyk (Василь Мельник)</li>
 <li>Software engineer at <a href="https://www.linkedin.com/company/softserve">SoftServe</a>, full stack </li>
 <li>Teaching assistant at <a href="https://en.wikipedia.org/wiki/Chernivtsi_University">Yuriy Fedkovych Chernivtsi National University</a> </li>
 <li>Degree in mathematics and computer sciences </li>
